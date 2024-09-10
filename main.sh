@@ -29,5 +29,18 @@ count_seq_bp() {
   echo "$bp_total_count" >> log.txt
 }
 
-# Call function
+# Call function to perform counts
 count_seq_bp "/Users/bayleechristensen/OneDrive - Utah Tech University/School/FallClasses2024/s4b/02_shell_scripting"
+
+# Create fasta file for each indv. sequence
+mkdir -p individual_fastas
+
+create_fastas() {
+    local dir="$1"
+
+    find "$dir" -type f -name "*.fasta" | while read -r fasta_file; do
+        awk '/^>/{header=$0; gsub(/[^a-zA-Z0-9_]/, "_", header); file="individual_fastas/" substr(header, 2) ".fasta"} {print > file}' "$fasta_file"
+    done
+}
+
+create_fastas "/Users/bayleechristensen/OneDrive - Utah Tech University/School/FallClasses2024/s4b/02_shell_scripting/ExampleAlignments"
