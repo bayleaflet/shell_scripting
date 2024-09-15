@@ -5,7 +5,7 @@
 # Date: 9/6/24
 
 # Recursively search all directories for fasta files, and count them
-find . -type f -name "*.fasta" | wc -l | xargs >> log.txt
+find . -type f -name "*.fasta" | wc -l | xargs > log.txt
 
 # Function to count sequences (which calls two python functions)
 count_seq_bp() {
