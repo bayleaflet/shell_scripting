@@ -7,7 +7,7 @@
 # Recursively search all directories for fasta files, and count them
 find . -type f -name "*.fasta" | wc -l | xargs >> log.txt
 
-# Function to count sequences (which call two python function)
+# Function to count sequences (which calls two python functions)
 count_seq_bp() {
   local dir="$1"
   local seq_total_count=0
@@ -35,6 +35,7 @@ count_seq_bp "/Users/bayleechristensen/OneDrive - Utah Tech University/School/Fa
 # Create fasta file for each indv. sequence
 mkdir -p individual_fastas
 
+# Function for putting each sequence into a fasta file
 create_fastas() {
     local dir="$1"
 
@@ -43,4 +44,5 @@ create_fastas() {
     done
 }
 
+# Call Function
 create_fastas "/Users/bayleechristensen/OneDrive - Utah Tech University/School/FallClasses2024/s4b/02_shell_scripting/ExampleAlignments"
